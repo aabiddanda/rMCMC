@@ -90,8 +90,10 @@ int main(int argc, char* argv[])
     if (argc < 2)
     {
     	cerr << "Arguments of rMCMC:" << endl;
-    	cerr <<	"-i /path/filemame (event file)" << endl;
-    	cerr << "-m nb of meioses" << endl << "-c nb of iterations of the MCMC chain" << endl;
+    	cerr <<	"-i /path/filename (event file)" << endl;
+    	cerr << "-nbmeioses /path/filemame (nb meioses file)" << endl;
+    	cerr << "-m nb of meioses" << endl;
+    	cerr << "-c nb of iterations of the MCMC chain" << endl;
     	cerr << "-r prior mean (cM/Mb)" << endl;
     	cerr << "-v prior variance at 1Mb scale (cM^2)" << endl;
     	cerr << "-c number of iterations" << endl;
@@ -100,7 +102,6 @@ int main(int argc, char* argv[])
     	cerr << "-s random seed" << endl;
     	cerr << "-h HDI region probability" << endl;
     	cerr << "-o output_prefix" << endl;
-    	cerr << "-nbmeioses /path/filemame (nb meioses file)" << endl;
     }
 
 	unsigned int ui=1;
@@ -111,6 +112,7 @@ int main(int argc, char* argv[])
     	if (in_str == "-i") // argument 1 : input file : event file
     	{	// Input file
     		in_str2 = argv[ui+1];
+
     		filename = in_str2.c_str();
     	}
     	else if (in_str == "-m") // argument 2 : total nb of meioses
