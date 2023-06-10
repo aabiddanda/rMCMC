@@ -82,34 +82,49 @@ int main(int argc, char* argv[])
 	double prior_rate = 1.0; // prior recombination rate of 1 cM/Mb
     double prior_var = 5.0; // prior variance set by default to 5 (var=0.66 at 1Mb scale in HapMap2)
     int samp = 1000;
-    int seed = (int)start_time;
-	double HDI_region = 0.95;
+    int seed = 42; // default seed is set to 42 for consistency of results
+	double HDI_region = 0.95; //
 	bool prior_rate_set = false;
 	string M_filename=""; // Path/filename to the nb of meioses file
 
     if (argc < 2)
     {
-    	cerr << "Arguments of rMCMC:" << endl;
-    	cerr <<	"-i /path/filename (event file)" << endl;
-    	cerr << "-nbmeioses /path/filemame (nb meioses file)" << endl;
-    	cerr << "-m nb of meioses" << endl;
-    	cerr << "-c nb of iterations of the MCMC chain" << endl;
-    	cerr << "-r prior mean (cM/Mb)" << endl;
-    	cerr << "-v prior variance at 1Mb scale (cM^2)" << endl;
-    	cerr << "-c number of iterations" << endl;
-    	cerr << "-b nb of burn-in iterations" << endl;
-    	cerr << "-d iterations between samples" << endl;
-    	cerr << "-s random seed" << endl;
-    	cerr << "-h HDI region probability" << endl;
-    	cerr << "-o output_prefix" << endl;
+    	// cerr << "Arguments of rMCMC:" << endl;
+    	// cerr <<	"-i /path/filename (event file) [required]" << endl;
+    	// cerr << "-nbmeioses /path/filemame (nb meioses file) [required]" << endl;
+    	// cerr << "-m nb of meioses [required]" << endl;
+    	// cerr << "-c nb of iterations of the MCMC chain [default: 100000]" << endl;
+    	// cerr << "-r prior mean (cM/Mb) [default: 1.0 cM/Mb]" << endl;
+    	// cerr << "-v prior variance at 1Mb scale (cM^2) [default: 5.0 cM^2]" << endl;
+    	// cerr << "-b nb of burn-in iterations [default: 33000]" << endl;
+    	// cerr << "-d iterations between posterior samples [default: 1000]" << endl;
+    	// cerr << "-s random seed [default: 42]" << endl;
+    	// cerr << "-h HDI region probability [default: 0.95]" << endl;
+    	// cerr << "-o output_prefix" << endl;
+    	exit(0);
     }
 
-	unsigned int ui=1;
-    while (ui+1 < argc)
+	unsigned int ui=0;
+    while (ui < argc)
     {
     	string in_str = argv[ui];
    	    string in_str2;
-    	if (in_str == "-i") // argument 1 : input file : event file
+    	if ((in_str == "--help") || (in_str == "-h")){
+	    	cerr << "Arguments of rMCMC:" << endl;
+	    	cerr <<	"-i /path/filename (event file) [required]" << endl;
+	    	cerr << "-nbmeioses /path/filemame (nb meioses file) [required]" << endl;
+	    	cerr << "-m nb of meioses [required]" << endl;
+	    	cerr << "-c nb of iterations of the MCMC chain [default: 100000]" << endl;
+	    	cerr << "-r prior mean (cM/Mb) [default: 1.0 cM/Mb]" << endl;
+	    	cerr << "-v prior variance at 1Mb scale (cM^2) [default: 5.0 cM^2]" << endl;
+	    	cerr << "-b nb of burn-in iterations [default: 33000]" << endl;
+	    	cerr << "-d iterations between posterior samples [default: 1000]" << endl;
+	    	cerr << "-s random seed [default: 42]" << endl;
+	    	cerr << "-h HDI region probability [default: 0.95]" << endl;
+	    	cerr << "-o output_prefix" << endl;
+	    	exit(0);
+    	}
+    	else if (in_str == "-i") // argument 1 : input file : event file
     	{	// Input file
     		in_str2 = argv[ui+1];
 
@@ -188,15 +203,6 @@ int main(int argc, char* argv[])
 
  	unsigned int nb_intervals = (unsigned int)intervals.size();
 	cerr << "Number of sequence intervals: " << nb_intervals << endl;
-
-	/*
-	// Print to check
-	cerr << "int i\tstart\tstop\tnb meioses\n";
-	for(int i=0; i<20; i++)
-	{
-		cerr << i << "\t" << intervals[i].startpos << "\t" << intervals[i].stoppos << "\t" << intervals[i].M << endl;
-	}
-	*/
 
 	event::set_seed(seed);
  	interval::prior_recomb_rate = prior_rate;
