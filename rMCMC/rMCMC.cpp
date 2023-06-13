@@ -89,18 +89,18 @@ int main(int argc, char* argv[])
 
     if (argc < 2)
     {
-    	// cerr << "Arguments of rMCMC:" << endl;
-    	// cerr <<	"-i /path/filename (event file) [required]" << endl;
-    	// cerr << "-nbmeioses /path/filemame (nb meioses file) [required]" << endl;
-    	// cerr << "-m nb of meioses [required]" << endl;
-    	// cerr << "-c nb of iterations of the MCMC chain [default: 100000]" << endl;
-    	// cerr << "-r prior mean (cM/Mb) [default: 1.0 cM/Mb]" << endl;
-    	// cerr << "-v prior variance at 1Mb scale (cM^2) [default: 5.0 cM^2]" << endl;
-    	// cerr << "-b nb of burn-in iterations [default: 33000]" << endl;
-    	// cerr << "-d iterations between posterior samples [default: 1000]" << endl;
-    	// cerr << "-s random seed [default: 42]" << endl;
-    	// cerr << "-h HDI region probability [default: 0.95]" << endl;
-    	// cerr << "-o output_prefix" << endl;
+    	cerr << "Arguments of rMCMC:" << endl;
+    	cerr <<	"-i /path/filename (event file) [required]" << endl;
+    	cerr << "-nbmeioses /path/filemame (nb meioses file) [required]" << endl;
+    	cerr << "-m nb of meioses [required]" << endl;
+    	cerr << "-c nb of iterations of the MCMC chain [default: 100000]" << endl;
+    	cerr << "-r prior mean (cM/Mb) [default: 1.0 cM/Mb]" << endl;
+    	cerr << "-v prior variance at 1Mb scale (cM^2) [default: 5.0 cM^2]" << endl;
+    	cerr << "-b nb of burn-in iterations [default: 33000]" << endl;
+    	cerr << "-d iterations between posterior samples [default: 1000]" << endl;
+    	cerr << "-s random seed [default: 42]" << endl;
+    	cerr << "-h HDI region probability [default: 0.95]" << endl;
+    	cerr << "-o output_prefix" << endl;
     	exit(0);
     }
 
